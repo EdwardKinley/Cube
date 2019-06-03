@@ -1,0 +1,50 @@
+body {
+  font-family: sans-serif;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 95vh;
+}
+
+.cubeSizeOptions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* background-color: red; */
+  width: 90vw;
+}
+
+.cubeSizeOption {
+  background-color: black;
+  height: 20vw;
+  width: 20vw;
+  border-radius: 2%;
+  margin: 0 1vw;
+}
+
+.row {
+  /* background-color: grey; */
+  width: 100%;
+  border-radius: 15%;
+  display: flex;
+  flex-direction: row;
+}
+
+.square {
+  /* background-color: black; */
+  /* border-radius: 25%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sticker {
+  /* background-color: red; */
+  height: 92%;
+  width: 92%;
+  border-radius: 20%;
+}
