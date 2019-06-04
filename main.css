@@ -64,3 +64,12 @@ body {
   min-width: 32vh;
   width: 32vh;
 }
+
+.faceRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.faceSquare {
+  height: 100%;
+}
