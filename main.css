@@ -52,7 +52,8 @@ body {
 }
 
 .cubeRow {
-  height: 32vh;
+  height: 31vh;
+  margin: 1vh 0;
   width: 128vh;
   display: flex;
   flex-direction: row;
@@ -60,9 +61,10 @@ body {
 }
 
 .cubeFaceSpace {
-  height: 32vh;
-  min-width: 32vh;
-  width: 32vh;
+  height: 31vh;
+  min-width: 31vh;
+  width: 31vh;
+  margin: 0 1vh;
 }
 
 .faceRow {
@@ -81,6 +83,7 @@ body {
   height: 90%;
   width: 90%;
   background-color: grey;
+  font-size: 1.3rem;
 }
 
 .faceSticker {

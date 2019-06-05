@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // , 6, 7, 8, 9
   ];
   colours = ['darkorange', 'green', 'white', 'blue', 'yellow', 'red'];
-  size = 0;
+  chosenSize = 0;
 
   showCubeSizeOptions();
 
@@ -14,11 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
     cubeSizeOptions.className = 'cubeSizeOptions';
     main.appendChild(cubeSizeOptions);
     for (i=0; i<cubeSizes.length; i++) {
-      size = i+2;
+      const size = i+2;
       const cubeSizeOption = document.createElement('div');
       cubeSizeOption.className = 'cubeSizeOption';
       cubeSizeOptions.appendChild(cubeSizeOption);
       cubeSizeOption.addEventListener('click', () => {
+        chosenSize = size;
         setUpCubeSpace(size);
       })
       for (j=0; j<cubeSizes[i]; j++) {
@@ -119,9 +120,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // moveButton.textContent = `${i+1}${j}${k}`;
     moveButton.id = `move${i+1}${j}${k}`;
     if (moveButton.id[5] == 0) {  moveButton.textContent = '▲'; }
-    if (moveButton.id[5] == size+1) {  moveButton.textContent = '▼'; }
+    if (moveButton.id[5] == chosenSize+1) {  moveButton.textContent = '▼'; }
     if (moveButton.id[6] == 0) {  moveButton.textContent = '◀'; }
-    if (moveButton.id[6] == size+1) {  moveButton.textContent = '▶'; }
+    if (moveButton.id[6] == chosenSize+1) {  moveButton.textContent = '▶'; }
     faceSquare.appendChild(moveButton);
     moveButton.addEventListener('click', () => {
       console.log(moveButton.id);
