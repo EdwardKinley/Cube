@@ -72,4 +72,19 @@ body {
 
 .faceSquare {
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonSpace {
+  height: 90%;
+  width: 90%;
+  background-color: grey;
+}
+
+.faceSticker {
+  height: 90%;
+  width: 90%;
+  border-radius: 10%;
 }
