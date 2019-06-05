@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // , 6, 7, 8, 9
   ];
   colours = ['darkorange', 'green', 'white', 'blue', 'yellow', 'red'];
+  size = 0;
 
   showCubeSizeOptions();
 
@@ -13,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cubeSizeOptions.className = 'cubeSizeOptions';
     main.appendChild(cubeSizeOptions);
     for (i=0; i<cubeSizes.length; i++) {
-      const size = i+2;
+      size = i+2;
       const cubeSizeOption = document.createElement('div');
       cubeSizeOption.className = 'cubeSizeOption';
       cubeSizeOptions.appendChild(cubeSizeOption);
@@ -88,12 +89,15 @@ document.addEventListener('DOMContentLoaded', () => {
           } else {
             faceSquare.style.width = `${72/size}%`;
           }
+          if (j==0 || j==size+1) {
+            if (k!=0 && k!=size+1) {
+              addMoveButton(faceSquare, i, j, k);
+            }
+          }
           if (k==0 || k==size+1) {
-            // faceSquare.style.backgroundColor = 'salmon';
-            const buttonSpace = document.createElement('button');
-            buttonSpace.className = 'buttonSpace';
-            buttonSpace.textContent = 'b';
-            faceSquare.appendChild(buttonSpace);
+            if (j!=0 && j!=size+1) {
+              addMoveButton(faceSquare, i, j, k);
+            }
           } else if (j!=0 && j!=size+1) {
             const faceSticker = document.createElement('div');
             faceSticker.className = 'faceSticker';
@@ -107,6 +111,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     }
+  }
+
+  function addMoveButton(faceSquare, i, j, k) {
+    const moveButton = document.createElement('button');
+    moveButton.className = 'moveButton';
+    // moveButton.textContent = `${i+1}${j}${k}`;
+    moveButton.id = `move${i+1}${j}${k}`;
+    if (moveButton.id[5] == 0) {  moveButton.textContent = '▲'; }
+    if (moveButton.id[5] == size+1) {  moveButton.textContent = '▼'; }
+    if (moveButton.id[6] == 0) {  moveButton.textContent = '◀'; }
+    if (moveButton.id[6] == size+1) {  moveButton.textContent = '▶'; }
+    faceSquare.appendChild(moveButton);
+    moveButton.addEventListener('click', () => {
+      console.log(moveButton.id);
+    })
+
   }
 
 })
