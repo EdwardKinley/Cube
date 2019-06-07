@@ -105,6 +105,12 @@ document.addEventListener('DOMContentLoaded', () => {
             faceSticker.id = `sticker${i+1}${j}${k}`;
             faceSquare.style.backgroundColor = 'black';
             faceSquare.appendChild(faceSticker);
+            const face = i+1;
+            faceSquare.addEventListener('click', () => {
+              if (face != 3) {
+                changeFaceView(face);
+              }
+            })
             // const randomNumber = Math.floor(Math.random() * 6);
             // faceSticker.style.backgroundColor = `${colours[randomNumber]}`;
             faceSticker.style.backgroundColor = `${colours[i]}`;
@@ -131,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function move(i, j, k) {
-    console.log('i', i, 'j', j, 'k', k);
+    // console.log('i', i, 'j', j, 'k', k);
     face = i+1;
     s = chosenSize + 1;
     moves = [];
@@ -248,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // if (toSwivel[1] == 'a') {
     //   console.log('anti');
     // }
-    console.log(toSwivel);
+    // console.log(toSwivel);
     swivel(toSwivel);
 
   }
@@ -288,8 +294,41 @@ document.addEventListener('DOMContentLoaded', () => {
         for (i=1; i<chosenSize-2; i++) { document.querySelector(`#sticker${toSwivel[0]}${chosenSize-i}2`).style.backgroundColor = temp[i-1]; }
       }
     }
+  }
 
+  function changeFaceView(face) {
+    const temp = [];
+    order = [];
+    if (face == 1) { order = ['3100', '15c2', '56c2', '22c1', '44a1', '6t00']; }
+    if (face == 2) { order = ['3200', '2500', '5400', '11a1', '66c1', '4t00']; }
+    if (face == 4) { order = ['3400', '4500', '5200', '11c1', '66a1', '2t00']; }
+    if (face == 5) { order = ['3500', '5200', '2400', '4500', '11c2', '66c2', '5t00']; }
+    if (face == 6) { order = ['3600', '65c2', '51c2', '22a1', '44c1', '1t00']; }
 
+    for (i=1; i<=chosenSize; i++) {
+      for (j=1; j<=chosenSize; j++) {
+        temp.push(document.querySelector(`#sticker3${i}${j}`).style.backgroundColor);
+      }
+    }
+    for (m=0; m<order.length-1; m++) {
+      for (n=1; n<=chosenSize; n++) {
+        for (p=1; p<=chosenSize; p++) {
+          // console.log(`#sticker${order[m][0]}${n}${p}`);
+          document.querySelector(`#sticker${order[m][0]}${n}${p}`).style.backgroundColor = document.querySelector(`#sticker${order[m][1]}${n}${p}`).style.backgroundColor;
+        }
+      }
+      if (order[m][3] == 1) { swivel(`${order[m][0]}${order[m][2]}`); }
+      if (order[m][3] == 2) { swivel(`${order[m][0]}${order[m][2]}`); swivel(`${order[m][0]}${order[m][2]}`); }
+      console.log(order[m]);
+    }
+    for (n=1; n<=chosenSize; n++) {
+      for (p=1; p<=chosenSize; p++) {
+        console.log(`#sticker${order[m][0]}${n}${p}`);
+        document.querySelector(`#sticker${order[order.length-1][0]}${n}${p}`).style.backgroundColor = temp[(n-1)*chosenSize + (p-1)];
+      }
+    }
+    // console.log(order);
+    // console.log(temp);
   }
 
 
