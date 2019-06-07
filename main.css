@@ -26,7 +26,18 @@ body {
   width: 20vw;
   border-radius: 2%;
   margin: 1vw;
+  transition: transform 0.2s ease;
 }
+
+.cubeSizeOption:hover {
+  transform: scale(1.05);
+  /* transition: 0.2s ease-in; */
+}
+
+/* .cubeSizeOption:unhover {
+  transform: scale(1.1);
+  transition: 0.2s ease-out;
+} */
 
 .row {
   /* background-color: grey; */
@@ -82,8 +93,12 @@ body {
 .moveButton {
   height: 90%;
   width: 90%;
-  background-color: grey;
+  /* background-color: grey; */
   font-size: 1.3rem;
+}
+
+.moveButton:hover {
+  background-color: grey;
 }
 
 .faceSticker {
