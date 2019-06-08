@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     showCube(size);
+    showTurnButtons();
   }
 
   function showCube(size) {
@@ -296,8 +297,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function showTurnButtons() {
+    const clockwiseButton = document.createElement('img');
+    clockwiseButton.setAttribute('src', `images/clockwise_arrow.png`);
+    clockwiseButton.setAttribute('alt', `clockwise quarter-turn arrow`);
+    clockwiseButton.className = 'turnButton';
+    clockwiseButton.id = 'clockwiseButton';
+    document.querySelector('#faceSpace13').appendChild(clockwiseButton);
+    clockwiseButton.addEventListener('click', () => {
+      order = ['3100', '12c1', '26c1', '64c1', '43c1', '55a1', '3t00'];
+      moveFaces(order);
+      swivel('3c');
+    })
+    const anticlockwiseButton = document.createElement('img');
+    anticlockwiseButton.setAttribute('src', `images/anticlockwise_arrow.png`);
+    anticlockwiseButton.setAttribute('alt', `anticlockwise quarter-turn arrow`);
+    anticlockwiseButton.className = 'turnButton';
+    anticlockwiseButton.id = 'anticlockwiseButton';
+    anticlockwiseButton.addEventListener('click', () => {
+      order = ['3100', '14a1', '46a1', '62a1', '23a1', '55c1', '3t00'];
+      moveFaces(order);
+      swivel('3a');
+    })
+    document.querySelector('#faceSpace11').appendChild(anticlockwiseButton);
+  }
+
   function changeFaceView(face) {
-    const temp = [];
     order = [];
     if (face == 1) { order = ['3100', '15c2', '56c2', '22c1', '44a1', '6t00']; }
     if (face == 2) { order = ['3200', '2500', '5400', '11a1', '66c1', '4t00']; }
@@ -305,6 +330,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (face == 5) { order = ['3500', '5200', '2400', '4500', '11c2', '66c2', '5t00']; }
     if (face == 6) { order = ['3600', '65c2', '51c2', '22a1', '44c1', '1t00']; }
 
+    moveFaces(order);
+  }
+
+  function moveFaces(order) {
+    const temp = [];
     for (i=1; i<=chosenSize; i++) {
       for (j=1; j<=chosenSize; j++) {
         temp.push(document.querySelector(`#sticker3${i}${j}`).style.backgroundColor);
@@ -327,8 +357,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector(`#sticker${order[order.length-1][0]}${n}${p}`).style.backgroundColor = temp[(n-1)*chosenSize + (p-1)];
       }
     }
-    // console.log(order);
-    // console.log(temp);
   }
 
 

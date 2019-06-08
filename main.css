@@ -94,7 +94,9 @@ body {
   height: 90%;
   width: 90%;
   /* background-color: grey; */
-  font-size: 1.3rem;
+  font-size: 3vh;
+  line-height: 3vh;
+  padding: 0;
 }
 
 .moveButton:hover {
@@ -105,4 +107,26 @@ body {
   height: 90%;
   width: 90%;
   border-radius: 10%;
+}
+
+.turnButton {
+  height: 7vh;
+  width: 7vh;
+  /* margin: 12vh; */
+  /* font-size: 5vh;
+  line-height: 5vh; */
+  border: 2px solid grey;
+  transition: transform 0.2s ease;
+}
+
+#clockwiseButton {
+  margin: 19vh 4.7vh;
+}
+
+#anticlockwiseButton {
+  margin: 19vh 18.7vh;
+}
+
+.turnButton:hover {
+  transform: scale(1.2);
 }
