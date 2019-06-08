@@ -130,3 +130,25 @@ body {
 .turnButton:hover {
   transform: scale(1.2);
 }
+
+#faceSpace31 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.resetButton {
+  font-size: 2.5vh;
+  background-color: silver;
+  width: 12vw;
+  margin: 1vh;
+  border-radius: 0;
+  border: 1px solid grey;
+  transition: transform 0.2s ease;
+}
+
+.resetButton:hover {
+  background-color: grey;
+  transform: scale(1.05);
+}

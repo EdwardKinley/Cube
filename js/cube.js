@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     showCube(size);
     showTurnButtons();
+    showResetButtons();
   }
 
   function showCube(size) {
@@ -320,6 +321,23 @@ document.addEventListener('DOMContentLoaded', () => {
       swivel('3a');
     })
     document.querySelector('#faceSpace11').appendChild(anticlockwiseButton);
+  }
+
+  function showResetButtons() {    
+    const scrambleButton = document.createElement('button');
+    scrambleButton.className = 'resetButton';
+    scrambleButton.textContent = 'Scramble';
+    document.querySelector('#faceSpace31').appendChild(scrambleButton);
+
+    const resetButton = document.createElement('button');
+    resetButton.className = 'resetButton';
+    resetButton.textContent = 'Reset';
+    document.querySelector('#faceSpace31').appendChild(resetButton);
+
+    const newButton = document.createElement('button');
+    newButton.className = 'resetButton';
+    newButton.textContent = 'New';
+    document.querySelector('#faceSpace31').appendChild(newButton);
   }
 
   function changeFaceView(face) {
