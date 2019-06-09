@@ -323,21 +323,31 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#faceSpace11').appendChild(anticlockwiseButton);
   }
 
-  function showResetButtons() {    
+  function showResetButtons() {
     const scrambleButton = document.createElement('button');
     scrambleButton.className = 'resetButton';
     scrambleButton.textContent = 'Scramble';
     document.querySelector('#faceSpace31').appendChild(scrambleButton);
+    scrambleButton.addEventListener('click', () => {
+      
+    })
 
     const resetButton = document.createElement('button');
     resetButton.className = 'resetButton';
     resetButton.textContent = 'Reset';
     document.querySelector('#faceSpace31').appendChild(resetButton);
+    resetButton.addEventListener('click', () => {
+      main.innerHTML = '';
+      setUpCubeSpace(chosenSize);
+    })
 
     const newButton = document.createElement('button');
     newButton.className = 'resetButton';
     newButton.textContent = 'New';
     document.querySelector('#faceSpace31').appendChild(newButton);
+    newButton.addEventListener('click', () => {
+      location.reload();
+    })
   }
 
   function changeFaceView(face) {
