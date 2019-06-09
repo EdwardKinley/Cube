@@ -329,7 +329,17 @@ document.addEventListener('DOMContentLoaded', () => {
     scrambleButton.textContent = 'Scramble';
     document.querySelector('#faceSpace31').appendChild(scrambleButton);
     scrambleButton.addEventListener('click', () => {
-      
+      for (t=0; t<30; t++) {
+        console.log(t);
+        const randomFace = Math.floor(Math.random() * 6);
+        const randomDirection = Math.floor(Math.random() * 4);
+        const randomRC = Math.ceil(Math.random() * chosenSize);
+        console.log(randomFace, randomDirection, randomRC);
+        if (randomDirection == 0) { move(randomFace, 0, randomRC); }
+        else if (randomDirection == 1) { move(randomFace, chosenSize+1, randomRC); }
+        else if (randomDirection == 2) { move(randomFace, randomRC, 0); }
+        else if (randomDirection == 3) { move(randomFace, randomRC, chosenSize+1); }
+      }
     })
 
     const resetButton = document.createElement('button');
