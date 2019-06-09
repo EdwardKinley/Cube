@@ -45,19 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function setUpCubeSpace(size) {
     main.innerHTML = '';
-    // main.style.backgroundColor = 'grey';
     for (i=0; i<3; i++) {
       const cubeRow = document.createElement('div');
       cubeRow.className = 'cubeRow';
-      // const randomNumber = Math.floor(Math.random() * 6);
-      // cubeRow.style.backgroundColor = `${colours[randomNumber]}`;
       main.appendChild(cubeRow);
       for (j=0; j<4; j++) {
         const cubeFaceSpace = document.createElement('div');
         cubeFaceSpace.className = 'cubeFaceSpace';
         cubeFaceSpace.id = `faceSpace${i+1}${j+1}`
-        // const randomNumber = Math.floor(Math.random() * 6);
-        // cubeFaceSpace.style.backgroundColor = `${colours[randomNumber]}`;
         cubeRow.appendChild(cubeFaceSpace);
       }
     }
@@ -67,21 +62,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function showCube(size) {
-    // console.log('about to show cube with size', size);
     const faceSpaceIDs = [12, 21, 22, 23, 24, 32];
     for (i=0; i<faceSpaceIDs.length; i++) {
       const faceSpace = document.querySelector(`#faceSpace${faceSpaceIDs[i]}`);
-      // faceSpace.style.backgroundColor = 'black';
       for (j=0; j<size+2; j++) {
         const faceRow = document.createElement('div');
         faceRow.className = 'faceRow';
         if (j==0 || j==size+1) {
           faceRow.style.height = '14%';
-          // faceRow.style.backgroundColor = 'salmon';
         } else {
           faceRow.style.height = `${72/size}%`;
-          // const randomNumber = Math.floor(Math.random() * 6);
-          // faceRow.style.backgroundColor = `${colours[randomNumber]}`;
         }
         faceSpace.appendChild(faceRow);
         for (k=0; k<size+2; k++) {
@@ -113,8 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 changeFaceView(face);
               }
             })
-            // const randomNumber = Math.floor(Math.random() * 6);
-            // faceSticker.style.backgroundColor = `${colours[randomNumber]}`;
             faceSticker.style.backgroundColor = `${colours[i]}`;
           }
           faceRow.appendChild(faceSquare);
@@ -126,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function addMoveButton(faceSquare, i, j, k) {
     const moveButton = document.createElement('button');
     moveButton.className = 'moveButton';
-    // moveButton.textContent = `${i+1}${j}${k}`;
     moveButton.id = `move${i+1}${j}${k}`;
     if (moveButton.id[5] == 0) {  moveButton.textContent = '▲'; }
     if (moveButton.id[5] == chosenSize+1) {  moveButton.textContent = '▼'; }
@@ -139,14 +126,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function move(i, j, k) {
-    // console.log('i', i, 'j', j, 'k', k);
     face = i+1;
     s = chosenSize + 1;
     moves = [];
     toSwivel = 0;
-    // console.log(toSwivel);
     fjk = face.toString()+j.toString()+k.toString();
-    // console.log(fjk);
 
     if (fjk == 110 || fjk == `2${s}1` || fjk == `6${s-1}${s}` || fjk == `40${s-1}`) { toSwivel = '5c'; }
     if (fjk == `11${s}` || fjk == `4${s}${s-1}` || fjk == `6${s-1}0` || fjk == 201) { toSwivel = '5a'; }
@@ -160,7 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fjk == `31${s}` || fjk == `41${s}` || fjk == `51${s}` || fjk == `21${s}`) { toSwivel = '1a'; }
     if (fjk == `3${s-1}0` || fjk == `2${s-1}0` || fjk == `5${s-1}0` || fjk == `4${s-1}0`) { toSwivel = '6a'; }
     if (fjk == `3${s-1}${s}` || fjk == `4${s-1}${s}` || fjk == `5${s-1}${s}` || fjk == `2${s-1}${s}`) { toSwivel = '6c'; }
-    // console.log(toSwivel);
 
     if (face == 1) {
       if (k == 0) { moves = [`1${j}l`, `2${j}d`, `6${s-j}r`, `4${s-j}u`]; }
@@ -208,26 +191,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const moveElements = [];
-    // console.log(moveElements);
     for (n=0; n<moves.length; n++) {
-      // console.log(n);
-      // console.log(moves[n]);
       const movesTemp = [];
       for (p=0; p<chosenSize; p++) {
-        // movesTemp.push(document.querySelector(`#sticker${face}${j}${m}`));
-        // if (moves[n][2] == 'r' || moves[n][2] == 'l') { movesTemp.push(document.querySelector(`#sticker${moves[n][0]}${moves[n][1]}${p+1}`)); }
         if (moves[n][2] == 'r') { movesTemp.push(document.querySelector(`#sticker${moves[n][0]}${moves[n][1]}${s-1-p}`)); }
         if (moves[n][2] == 'l') { movesTemp.push(document.querySelector(`#sticker${moves[n][0]}${moves[n][1]}${p+1}`)); }
-        // if (moves[n][2] == 'd' || moves[n][2] == 'u') { movesTemp.push(document.querySelector(`#sticker${moves[n][0]}${p+1}${moves[n][1]}`)); }
         if (moves[n][2] == 'd') { movesTemp.push(document.querySelector(`#sticker${moves[n][0]}${s-1-p}${moves[n][1]}`)); }
         if (moves[n][2] == 'u') { movesTemp.push(document.querySelector(`#sticker${moves[n][0]}${p+1}${moves[n][1]}`)); }
-        // if (moves[n][2] == 'u' || moves[n][2] == 'd') { movesTemp.push(document.querySelector(`#sticker${face}${m}${j}`).style.backgroundColor); }
       }
       moveElements.push(movesTemp);
-      // console.log(movesTemp);
     }
-
-    // console.log(moveElements);
 
     for (r=0; r<chosenSize; r++) {
       moveElements[0][r].style.backgroundColor = `${moveElements[moveElements.length-1][r].style.backgroundColor}`;
@@ -239,24 +212,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // console.log(temp);
     for (r=0; r<chosenSize; r++) {
       moveElements[1][r].style.backgroundColor = `${temp[r]}`;
     }
 
-    // console.log(toSwivel);
-    //
-    // console.log(toSwivel[1]);
-
-    // if (toSwivel[1] == 'c') {
-    //   console.log('clockwise');
-    // }
-    //
-    //
-    // if (toSwivel[1] == 'a') {
-    //   console.log('anti');
-    // }
-    // console.log(toSwivel);
     swivel(toSwivel);
 
   }
@@ -330,11 +289,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#faceSpace31').appendChild(scrambleButton);
     scrambleButton.addEventListener('click', () => {
       for (t=0; t<30; t++) {
-        console.log(t);
         const randomFace = Math.floor(Math.random() * 6);
         const randomDirection = Math.floor(Math.random() * 4);
         const randomRC = Math.ceil(Math.random() * chosenSize);
-        console.log(randomFace, randomDirection, randomRC);
         if (randomDirection == 0) { move(randomFace, 0, randomRC); }
         else if (randomDirection == 1) { move(randomFace, chosenSize+1, randomRC); }
         else if (randomDirection == 2) { move(randomFace, randomRC, 0); }
@@ -381,22 +338,17 @@ document.addEventListener('DOMContentLoaded', () => {
     for (m=0; m<order.length-1; m++) {
       for (n=1; n<=chosenSize; n++) {
         for (p=1; p<=chosenSize; p++) {
-          // console.log(`#sticker${order[m][0]}${n}${p}`);
           document.querySelector(`#sticker${order[m][0]}${n}${p}`).style.backgroundColor = document.querySelector(`#sticker${order[m][1]}${n}${p}`).style.backgroundColor;
         }
       }
       if (order[m][3] == 1) { swivel(`${order[m][0]}${order[m][2]}`); }
       if (order[m][3] == 2) { swivel(`${order[m][0]}${order[m][2]}`); swivel(`${order[m][0]}${order[m][2]}`); }
-      console.log(order[m]);
     }
     for (n=1; n<=chosenSize; n++) {
       for (p=1; p<=chosenSize; p++) {
-        console.log(`#sticker${order[m][0]}${n}${p}`);
         document.querySelector(`#sticker${order[order.length-1][0]}${n}${p}`).style.backgroundColor = temp[(n-1)*chosenSize + (p-1)];
       }
     }
   }
-
-
 
 })
